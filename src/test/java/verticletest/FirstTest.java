@@ -44,19 +44,6 @@ public class FirstTest {
     }
 
     @Test
-    public void testVerticle(TestContext context) {
-        final Async async = context.async();
-
-        vertx.createHttpClient().getNow(8080, "localhost", "/",
-                responce -> {
-                    responce.handler(body -> {
-                        context.assertTrue(body.toString().contains("Hello"));
-                        async.complete();
-                    });
-                });
-    }
-
-    @Test
     public void chekThatIndexPageIsServed(TestContext context) {
         Async async = context.async();
 
@@ -86,7 +73,7 @@ public class FirstTest {
                         final User user = Json.decodeValue(body.toString(), User.class);
                         context.assertEquals(user.getName(), "Jhon");
                         context.assertEquals(user.getSurname(), "Snow");
-                       // context.assertEquals(user.getPhonenum(), 0b1);
+                        // context.assertEquals(user.getPhonenum(), 0b1);
                         context.assertNotNull(user.getId());
                         async.complete();
                     });
